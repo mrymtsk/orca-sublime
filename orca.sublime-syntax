@@ -8,35 +8,60 @@ scope: text.orca
 contexts:
   main:
     - match: |-
-        (?x)^%\b(
-          autoci|basis|casscf|cipsi|cis|cim|coords|cpcm|elprop|eprnmr|freq
-          |geom|irc|loc|md|mdci|method|mp2|mrci|mrcc|numgrad|nbo|output|pal
-          |paras|rel|plots|rocis|rr|scf
+        (?ix)^%\b(
+          autoci
+        | basis
+        | casscf
+        | cim
+        | cipsi
+        | cis
+        | coords
+        | cpcm
+        | elprop
+        | eprnmr
+        | freq
+        | geom
+        | irc
+        | loc
+        | md(ci)?
+        | method
+        | mp2
+        | mrcc
+        | mrci
+        | nbo
+        | numgrad
+        | output
+        | pal
+        | paras
+        | plots
+        | rel
+        | rocis
+        | rr
+        | scf
         )\b
       scope: variable.function.orca
       push:
         - include: comments
         - match: |-
             (?ix)\b(
-              maxiter
+              density
             | diismaxeq
             | directresetfreq
-            | nprocs
-            | guessmode
-            | nlb
-            | inithess
+            | guess(mode)?
             | hess_filename
-            | scale_init_displ
-            | nbokeylist
-            | guess
+            | inithess
+            | maxiter
             | moinp
+            | nbokeylist
+            | nlb
+            | nprocs
             | optimizehydrogens
-            | density
+            | scale_init_displ
             )\b
           scope: keyword.orca
         - match: (?i)print *\[[^\[\]]*\]
           scope: keyword.orca
-        - match: ^end$
+        - match: (?i)^end$
           scope: variable.function.orca
           pop: true
     - match: (?i)^%\b(moinp|maxcore)\b
@@ -46,12 +71,16 @@ contexts:
       push:
         - match: |-
             (?x)\b(
-              H|He|Li|Be|B|C|N|O|F|Ne|Na|Mg|Al|Si|P|S|Cl|Ar|K|Ca|Sc|Ti|V|Cr|Mn
-              |Fe|Co|Ni|Cu|Zn|Ga|Ge|As|Se|Br|Kr|Rb|Sr|Y|Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag
-              |Cd|In|Sn|Sb|Te|I|Xe|Cs|Ba|La|Ce|Pr|Nd|Pm|Sm|Eu|Gd|Tb|Dy|Ho|Er|Tm
-              |Yb|Lu|Hf|Ta|W|Re|Os|Ir|Pt|Au|Hg|Tl|Pb|Bi|Po|At|Rn|Fr|Ra|Ac|Th|Pa
-              |U|Np|Pu|Am|Cm|Bk|Cf|Es|Fm|Md|No|Lr|Rf|Db|Sg|Bh|Hs|Mt|Ds|Rg|Cn|Nh
-              |Fl|Mc|Lv|Ts|Og
+               H | He | Li | Be |  B |  C |  N |  O |  F | Ne | Na | Mg | Al
+            | Si |  P |  S | Cl | Ar |  K | Ca | Sc | Ti |  V | Cr | Mn | Fe
+            | Co | Ni | Cu | Zn | Ga | Ge | As | Se | Br | Kr | Rb | Sr |  Y
+            | Zr | Nb | Mo | Tc | Ru | Rh | Pd | Ag | Cd | In | Sn | Sb | Te
+            |  I | Xe | Cs | Ba | La | Ce | Pr | Nd | Pm | Sm | Eu | Gd | Tb
+            | Dy | Ho | Er | Tm | Yb | Lu | Hf | Ta |  W | Re | Os | Ir | Pt
+            | Au | Hg | Tl | Pb | Bi | Po | At | Rn | Fr | Ra | Ac | Th | Pa
+            |  U | Np | Pu | Am | Cm | Bk | Cf | Es | Fm | Md | No | Lr | Rf
+            | Db | Sg | Bh | Hs | Mt | Ds | Rg | Cn | Nh | Fl | Mc | Lv | Ts
+            | Og
             )\b
           scope: string.orca
         - match: ^\*$
@@ -64,45 +93,40 @@ contexts:
       push:
         - match: |-
             (?ix)\b(
-              b97-3c
-            | opt
-            | optts
-            | numfreq
-            | def2/j
-            | slowconv
-            | wb97x
-            | nl
-            | def2-qzvpp
-            | def2/j
-            | rijcosx
-            | sp
-            | grid5
-            | finalgrid6
-            | uks
-            | moread
-            | nolshift
-            | nodamp
-            | irc
-            | rhf
-            | 6-311++g**
-            | nbo
-            | normalprint
-            | pwpb95
-            | d4
-            | def2-tzvp
-            | tightscf
-            | def2-tzvp/c
-            | numgrad
-            | def2-tzvpp
-            | def2-tzvpp/c
-            | pbeh-3c
-            | freq
-            | pbe
+              6-311++g**
             | 6-31g**
             | autoaux
-            | xyzfile
-            | dlpno-ccsd(t)
+            | b97-3c
+            | d4
+            | def2-qzvpp
+            | def2-tzvp(/c)?
+            | def2-tzvpp(/c)?
+            | def2/j
+            | dlpno-ccsd\(t\)
+            | finalgrid6
+            | freq
+            | grid5
+            | irc
+            | moread
+            | nbo
+            | nl
+            | nodamp
+            | nolshift
+            | normalprint
+            | numfreq
+            | numgrad
+            | opt(ts)?
+            | pbe(h-3c)?
+            | pwpb95
+            | rhf
+            | rijcosx
+            | slowconv
+            | sp
             | tightpno
+            | tightscf
+            | uks
+            | wb97x
+            | xyzfile
             )\b
           scope: keyword.orca
         - match: $
