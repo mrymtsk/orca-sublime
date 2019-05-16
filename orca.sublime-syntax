@@ -92,42 +92,83 @@ contexts:
       scope: variable.function.orca
       push:
         - match: |-
-            (?ix)\b(
-              6-311++g**
-            | 6-31g**
+            (?ix)(
+              6-311\+\+g\*\*
+            | 6-31g\*(\*)?
+            | allpop
             | autoaux
+            | b3lyp
             | b97-3c
+            | bhlyp
+            | bp(86)?
+            | cc-pvtz
+            | conv
+            | cpcm(\(thf\))?
+            | d3bj
             | d4
-            | def2-qzvpp
+            | def2-qzvp(/c)?
+            | def2-qzvpp(d)?
+            | def2-sv(p)
+            | def2-svp(/c)?
             | def2-tzvp(/c)?
             | def2-tzvpp(/c)?
-            | def2/j
+            | def2/j(k)?
             | dlpno-ccsd\(t\)
+            | extrapolate\(2/3,def2\)
+            | extrapolate\(2/3/4,def2\)
             | finalgrid6
             | freq
+            | grid4
             | grid5
+            | gridx5
+            | hf-3c
             | irc
+            | largeprint
+            | loosepno
             | moread
             | nbo
+            | nevpt2
             | nl
             | nodamp
+            | nofinalgrid
+            | noiter
             | nolshift
+            | nopop
             | normalprint
+            | nososcf
+            | npa
+            | nrscf
             | numfreq
             | numgrad
             | opt(ts)?
-            | pbe(h-3c)?
+            | pal4
+            | patom
+            | pbe(0)?
+            | pbeh-3c
+            | printbasis
+            | printgap
+            | pw6b95
             | pwpb95
             | rhf
-            | rijcosx
+            | ri(-jk|-mp2|jcosx|jk)?
+            | rks
+            | roks
+            | scants
             | slowconv
+            | smallprint
             | sp
+            | sv(/j)?
+            | svp
+            | tightopt
             | tightpno
             | tightscf
+            | tpss
             | uks
+            | uno
+            | wb97m-d3bj
             | wb97x
             | xyzfile
-            )\b
+            )\s
           scope: keyword.orca
         - match: $
           pop: true
