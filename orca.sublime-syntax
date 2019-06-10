@@ -39,7 +39,7 @@ contexts:
         | rr
         | scf
         )\b
-      scope: variable.function.orca
+      scope: keyword.control.orca
       push:
         - include: comments
         - match: |-
@@ -58,16 +58,16 @@ contexts:
             | optimizehydrogens
             | scale_init_displ
             )\b
-          scope: keyword.orca
-        - match: (?i)print *\[[^\[\]]*\]
-          scope: keyword.orca
-        - match: (?i)^end$
           scope: variable.function.orca
+        - match: (?i)print *\[[^\[\]]*\]
+          scope: variable.function.orca
+        - match: (?i)^end$
+          scope: keyword.control.orca
           pop: true
     - match: (?i)^%\b(moinp|maxcore)\b
-      scope: keyword.orca
-    - match: (?i)^\* *\b(xyz|int|internal|gzmt)\b
       scope: variable.function.orca
+    - match: (?i)^\* *\b(xyz|int|internal|gzmt)\b
+      scope: keyword.control.orca
       push:
         - match: |-
             (?x)\b(
@@ -84,12 +84,12 @@ contexts:
             )\b
           scope: string.orca
         - match: ^\*$
-          scope: variable.function.orca
+          scope: keyword.control.orca
           pop: true
     - match: (?i)^\* *\b(xyz|gzmt)file\b
-      scope: variable.function.orca
+      scope: keyword.control.orca
     - match: ^!
-      scope: variable.function.orca
+      scope: keyword.control.orca
       push:
         - match: |-
             (?ix)(
@@ -169,7 +169,7 @@ contexts:
             | wb97x
             | xyzfile
             )\s
-          scope: keyword.orca
+          scope: variable.function.orca
         - match: $
           pop: true
     - include: comments
